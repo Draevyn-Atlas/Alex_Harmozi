@@ -4,20 +4,7 @@ import styled from "styled-components";
 const Navbar = () => {
   return (
     <Wrapper>
-      <h2>
-        <span style={{ color: "#00970F", fontWeight: "800" }}>$</span>
-        <span style={{ color: "#0176cc", fontWeight: "800" }}>
-          1
-          <sup
-            style={{ color: "#0176cc", fontSize: "24px", fontWeight: "800" }}
-          >
-            0
-          </sup>
-          0M{" "}
-        </span>
-        <span style={{ color: "#0176cc", fontWeight: "800" }}>Offers</span> x
-        ATLAS CO
-      </h2>
+       <img src="https://i.ibb.co/zN2mdfd/Group-2.png" alt="logo." />   
       <h3>Sign in</h3>
     </Wrapper>
   );
@@ -31,11 +18,10 @@ const Wrapper = styled.div`
   line-height: normal;
   box-shadow: rgba(0, 0, 0, 0.3) 0px 19px 38px,
     rgba(0, 0, 0, 0.22) 0px 15px 12px;
-  h2 {
+  img {
     padding-top: 20px;
     margin-left: 40px;
-    font-weight: 700;
-    font-size: 25px;
+    width: 20%;
   }
 
   h3 {
@@ -52,11 +38,10 @@ const Wrapper = styled.div`
     display: flex;
     justify-content: space-between;
     line-height: normal;
-    h2 {
+    img {
       padding-top: 20px;
       margin-left: 40px;
-      font-weight: 700;
-      font-size: 16px;
+      width: 40%;
     }
 
     h3 {

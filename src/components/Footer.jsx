@@ -27,21 +27,21 @@ const Foot = styled.div`
   width: 100%;
   height: auto;
   display: flex;
-  padding:20px 20px;
+  padding: 20px 20px;
   line-height: normal;
   background-color: #000000;
   color: #ffffff;
-  h4{
+  h4 {
     font-weight: 500;
     font-size: 16px;
     margin-left: 30px;
   }
-  p{
+  p {
     font-weight: 500;
     margin-left: 65%;
     margin-right: 30px;
   }
-  div{
+  div {
     display: flex;
     justify-content: space-evenly;
     gap: 15px;
@@ -55,6 +55,22 @@ const Foot = styled.div`
     line-height: normal;
     background-color: #000000;
     color: #ffffff;
+    h4 {
+      font-weight: 500;
+      font-size: 8.5px;
+      margin-left: 5px;
+    }
+    p {
+      font-weight: 500;
+      margin-left: 20%;
+      font-size: 8.5px;
+      margin-right: 5px;
+    }
+    div {
+      display: flex;
+      justify-content: space-evenly;
+      gap: 15px;
+    }
   }
   /* a:hover {
     color: red;
