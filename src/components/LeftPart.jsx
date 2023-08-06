@@ -1,7 +1,14 @@
-import React from "react";
+import React from 'react'
 
 const LeftPart = () => {
-  return <div>LeftPart</div>;
-};
+  return (
+    <>
+    <div>
+      <h1></h1>
+      <h2></h2>
+    </div>
+    </>
+  )
+}
 
-export default LeftPart;
+export default LeftPart
