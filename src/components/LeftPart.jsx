@@ -3,8 +3,8 @@ import styled from "styled-components";
 
 const LeftPart = () => {
   return (
-    <>
-      <box>
+    
+      <Box>
         <div>
           <h1>Alex-Powered Solutions,</h1>
           <h2>Potential Unleashed</h2>
@@ -15,32 +15,45 @@ const LeftPart = () => {
             revolutionize their content and branding strategies.
           </p>
         </div>
-      </box>
-    </>
+      </Box>
+    
   );
 }
 
-const box = styled.div`
+const Box = styled.div`
   width: 100%;
   height: auto;
-  padding: 45px 45px;
+  margin: 40px 40px;
+  padding: 50px 50px;
   display: flex;
   justify-content: space-between;
   line-height: normal;
-  box-shadow: rgba(0, 0, 0, 0.3) 0px 19px 38px,
-    rgba(0, 0, 0, 0.22) 0px 15px 12px;
-  img {
-    margin-left: 40px;
-    width: 20%;
-  }
+ div > h1{
+  font-size: 40px;
+  font-weight: 700;
+  line-height: 48px;
+  text-align: center;
+  color: #242424;
+ }
 
-  h3 {
-    margin-right: 30px;
-    font-weight: 600;
-    color: #0176cc;
-    font-size: 18px;
-  }
+ div > h2{
+  font-size: 36px;
+  font-weight: 700;
+  line-height: 60px;
+  color: #242424;
+  text-align: right;
+  margin-right:57px;
 
+ }
+
+ div > p{
+  margin-top: 25px;
+  line-height:24px;
+  font-size: 18px;
+  color:#7E7E7E;
+ }
+  
+  
   @media (max-width: 600px) {
     width: 100%;
     height: auto;
@@ -48,17 +61,7 @@ const box = styled.div`
     padding: 20px 20px;
     justify-content: space-between;
     line-height: normal;
-    img {
-      margin-left: 40px;
-      width: 40%;
-    }
-
-    h3 {
-      margin-right: 30px;
-      font-weight: 600;
-      color: #0176cc;
-      font-size: 14px;
-    }
+    
   }
   /* a:hover {
     color: red;
