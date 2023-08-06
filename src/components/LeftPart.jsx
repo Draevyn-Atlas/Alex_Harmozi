@@ -1,9 +1,10 @@
 import React from 'react'
+import styled from "styled-components";
 
 const LeftPart = () => {
   return (
     <>
-      <div>
+      <left_part>
         <div>
           <h1>Alex-Powered Solutions,</h1>
           <h2>Potential Unleashed</h2>
@@ -14,9 +15,10 @@ const LeftPart = () => {
             revolutionize their content and branding strategies.
           </p>
         </div>
-      </div>
+      </left_part>
     </>
   );
 }
+
 
 export default LeftPart
