@@ -25,9 +25,15 @@ const OfferForm = () => {
             Are you going to IMPROVE your clients health/wealth/relationships?
           </label>
           <div className="radio_group">
-            <Radio colorScheme="" value="Health">Health</Radio>
-            <Radio colorScheme="" value="Wealth">Wealth</Radio>
-            <Radio colorScheme="" value="Relationships">Relationships</Radio>
+            <Radio className="radio" color={"#E2E8F0"} value="Health">
+              Health
+            </Radio>
+            <Radio className="radio" color={"#E2E8F0"} value="Wealth">
+              Wealth
+            </Radio>
+            <Radio className="radio" color={"#E2E8F0"} value="Relationships">
+              Relationships
+            </Radio>
           </div>
         </div>
         <div className="form_control form_control_2">
@@ -35,7 +41,7 @@ const OfferForm = () => {
             What is your target audience within this market? (e.g. entrepreneurs
             looking to scale their business)
           </label>
-          <Input placeContent={"Enter response"} />
+          <Input placeholder={"Enter response"} />
         </div>
       </form>
     </Offer>
@@ -67,10 +73,18 @@ const Offer = styled.div`
 
     .form_control {
       width: 100%;
+
+      label {
+        font-weight: 500;
+      }
     }
 
     .form_control_1 label {
       width: 100%;
+    }
+
+    .radio {
+      font-weight: 400;
     }
   }
 `;
