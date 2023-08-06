@@ -1,9 +1,14 @@
 import React from "react";
+import LeftPart from "./LeftPart";
+import RightPart from "./RightPart";
 
 const Middle = () => {
-  return <div>
-    
-  </div>;
+  return (
+    <div>
+      <LeftPart />
+      <RightPart />
+    </div>
+  );
 };
 
 export default Middle;

@@ -1,9 +1,7 @@
-import React from 'react'
+import React from "react";
 
 const RightPart = () => {
-  return (
-    <div>RightPart</div>
-  )
-}
+  return <div>RightPart</div>;
+};
 
-export default RightPart
+export default RightPart;
