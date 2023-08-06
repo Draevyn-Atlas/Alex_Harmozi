@@ -1,9 +1,9 @@
 import React from "react";
 
-const Home = () => {
+const Middle = () => {
   return <div>
     
   </div>;
 };
 
-export default Home;
+export default Middle;
