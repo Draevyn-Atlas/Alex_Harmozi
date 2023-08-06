@@ -17,11 +17,13 @@ const Wrapper = styled.div`
   display: flex;
   justify-content: space-between;
   line-height: normal;
-  box-shadow: rgba(0, 0, 0, 0.3) 0px 19px 38px,
-    rgba(0, 0, 0, 0.22) 0px 15px 12px;
+  box-shadow: rgba(0, 0, 0, 0.25) 0px 0.0625em 0.0625em,
+    rgba(0, 0, 0, 0.25) 0px 0.125em 0.5em,
+    rgba(255, 255, 255, 0.1) 0px 0px 0px 1px inset;
   img {
     margin-left: 40px;
     width: 20%;
+    cursor: pointer;
   }
 
   h3 {
@@ -29,6 +31,7 @@ const Wrapper = styled.div`
     font-weight: 600;
     color: #0176cc;
     font-size: 18px;
+    cursor: pointer;
   }
 
   @media (max-width: 600px) {
