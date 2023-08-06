@@ -1,4 +1,4 @@
-import React from 'react'
+import React from "react";
 import styled from "styled-components";
 import { BsInstagram } from "react-icons/bs";
 import { LuFacebook } from "react-icons/lu";
@@ -13,7 +13,7 @@ const Footer = () => {
           <BsInstagram />
         </a>
         <a href="#" target="_blank">
-          
+          <img src="https://i.ibb.co/SVVNrP6/Vector.png" alt="Vector" />
         </a>
         <a href="#" target="_blank">
           <LuFacebook />
@@ -21,7 +21,7 @@ const Footer = () => {
       </div>
     </Foot>
   );
-}
+};
 
 const Foot = styled.div`
   width: 100%;
@@ -78,5 +78,4 @@ const Foot = styled.div`
   } */
 `;
 
-
-export default Footer
+export default Footer;
