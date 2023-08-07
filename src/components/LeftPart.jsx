@@ -6,9 +6,15 @@ const LeftPart = () => {
   return (
     <Box>
       <div>
-        <div>
+        <div className="left_part_section">
           <h1>Alex-Powered Solutions,</h1>
-          <h2>Potential Unleashed</h2>
+          <h2>
+            Potential{" "}
+            <div className="inline-block">
+              <p className="w-[100%] h-[39px]">Unleashed</p>
+              <p className="h-[10px] bg-regal-blue"></p>
+            </div>
+          </h2>
 
           <p>
             Discover your $100M offer with our AI-powered tools. Inspired by
@@ -16,7 +22,7 @@ const LeftPart = () => {
             revolutionize their content and branding strategies.
           </p>
         </div>
-        <div className="border">
+        <div className="border border-[1px] border-slate-500">
           <h3>Try it out</h3>
           <div>
             <img
@@ -59,7 +65,7 @@ const Box = styled.div`
     font-size: 40px;
     font-weight: 700;
     line-height: 48px;
-    text-align: center;
+    text-align: right;
     color: #242424;
   }
 
@@ -69,7 +75,7 @@ const Box = styled.div`
     line-height: 60px;
     color: #242424;
     text-align: right;
-    margin-right: 57px;
+    margin-right: 1rem;
   }
 
   div > div:nth-child(1) > p {
@@ -77,7 +83,7 @@ const Box = styled.div`
     line-height: 24px;
     font-size: 18px;
     color: #7e7e7e;
-    text-align: left;
+    text-align: justify;
   }
   .border {
     width: 80%;
