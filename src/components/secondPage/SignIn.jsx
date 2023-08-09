@@ -69,11 +69,10 @@ function SignIn() {
             <Input required placeholder="Password" size="md" />
             <div
               onClick={handleForgotPasswordLink}
-              className="text-[#0173c7] my-3 hover:underline  cursor-pointer m-auto  text-right"
+              className="text-[#0173c7]  hover:underline  cursor-pointer m-auto  text-right"
             >
             Forget Password
             </div>
-            <br />
             <br />
             <Checkbox>Notify me on full web-launch!</Checkbox>
           </ModalBody>

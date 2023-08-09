@@ -6,7 +6,7 @@ import BussinessAnalysis from './BussinessAnalysis.jsx'
 
 const Mid = () => {
   return (
-    <div className="rounded-md ">
+    <div className="rounded-md  bg-[#a6cbf6] ">
       <div
         className="bg-[#026be5] flex  pt-5 
       flex-col
