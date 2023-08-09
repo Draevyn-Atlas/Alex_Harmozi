@@ -12,8 +12,8 @@ const Navbar = () => {
           <img className='w-[100%] h-[100%]' src="https://i.ibb.co/zN2mdfd/Group-2.png" alt="logo." />
         </div>{' '}
       </Link>
-     {/*  <SignIn /> */}
-     <Otp/>
+      <SignIn /> 
+   
     </div>
   )
 }
