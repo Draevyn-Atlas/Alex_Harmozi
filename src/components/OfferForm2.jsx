@@ -1,8 +1,23 @@
 import React, { useEffect, useState } from "react";
 import Group3 from "./../assets/Group 3.png";
 import SignUp from "./secondPage/SignUp";
+import axios from "axios";
+
+
+const question ={
+  audience : "What is your target audience within this market? (e.g. entrepreneurs looking to scale their business)" ,
+  
+  painpoint : "What pain point are you solving? (e.g. not knowing how to scale and struggling to find talent)" ,
+  provide : "What product/service are you planning to provide? (e.g 1:1 coaching sessions to help them scale their business step by step)" ,
+  
+  improve:"Are you going to IMPROVE your clients health/wealth/relationships?"
+  
+}
 
 const Offer2 = () => {
+  const [check,setCheck] = useState("");
+  const [showSignUp, setShowSignUp] = useState(false);
+  const [formData, setFormData] = useState("");
   const [leftTime, setLeftTime] = useState({
     days: 0,
     hours: 0,
@@ -47,12 +62,37 @@ const Offer2 = () => {
     setTimeout(countDown, 1000);
   }
 
-  function handleSignup(){
-    SignUp()
-  } 
 
+  function postData(data){
+    axios.post("https://tiny-jade-mussel-hat.cyclic.app/details/save",{info:data}).then((res)=>console.log("res",res)).catch((err)=>console.log("err",err))
+  }
   
-
+  const handleSubmit = (e) => {
+    // setLoading(true);
+   
+    e.preventDefault();
+    const form = e.currentTarget;
+    const formData = new FormData(form);
+    const data = Object.fromEntries(formData);
+    
+    const new_data = {[question.audience] : data[question.audience] , [question.painpoint] : data[question.painpoint] , [question.provide]: data[question.provide], [question.improve] : check}
+    if (!check || !data[question.audience] || !data[question.painpoint] || !data[question.provide]  ){
+      return alert("Please fill all required fields");
+    }
+    else{
+      // console.log("Form data:" , new_data);
+      // axios.post("")
+      setFormData(new_data)
+      postData(new_data);
+      setShowSignUp(true)
+       
+    }
+     
+    
+    // triggerWorklow({...new_data});
+    // console.log("")
+   
+  };
 
   return (
     <div>
@@ -104,7 +144,7 @@ const Offer2 = () => {
             </p>
           </div>
         </div>
-        <div className="flex flex-col px-[32px]">
+        <form className="flex flex-col px-[32px] " onSubmit={handleSubmit}>
           <div>
             <p className="text-base font-medium leading-[140%] mb-2 text-[#242424]">
               Are you going to IMPROVE your clients health/wealth/relationships?
@@ -113,8 +153,8 @@ const Offer2 = () => {
               <input
                 id="health"
                 type="radio"
-                value=""
-                name="default-radio"
+               onChange={(e)=>setCheck("Health")}
+                name="improve"
                 className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 cursor-pointer "
               />
               <label
@@ -126,14 +166,15 @@ const Offer2 = () => {
             </div>
             <div className="flex items-center mb-4">
               <input
-                id="health"
+                id="wealth"
                 type="radio"
-                value=""
-                name="default-radio"
+                onChange={(e)=>setCheck("Wealth")}
+                name="improve"
                 className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 cursor-pointer "
               />
               <label
-                htmlFor="health"
+                htmlFor="wealth"
+                
                 className="ml-2 text-[12px] font-[600] text-[#7E7E7E] cursor-pointer hover:text-[#0174c8] "
               >
                 Wealth
@@ -141,14 +182,14 @@ const Offer2 = () => {
             </div>
             <div className="flex items-center mb-4">
               <input
-                id="health"
+                id="relationships"
                 type="radio"
-                value=""
-                name="default-radio"
+               onChange={()=>setCheck("Relationships")}
+                name="improve"
                 className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 cursor-pointer "
               />
               <label
-                htmlFor="health"
+                htmlFor="relationships"
                 className="ml-2 text-[12px] font-[600] text-[#7E7E7E] cursor-pointer hover:text-[#0174c8] "
               >
                 Relationships
@@ -161,6 +202,7 @@ const Offer2 = () => {
           </p>
           <input
             type="text"
+            name={question.audience}
             placeholder="Enter response"
             className="font-medium text-sm border-0 border-b-2 border-[#C1E4FF] p-2 outline-none mb-2"
           />
@@ -169,6 +211,7 @@ const Offer2 = () => {
           </p>
           <input
             type="text"
+            name={question.painpoint}
             placeholder="Enter response"
             className="font-medium text-sm border-0 border-b-2 border-[#C1E4FF] p-2 outline-none mb-2"
           />
@@ -177,15 +220,19 @@ const Offer2 = () => {
           </p>
           <input
             type="text"
+            name={question.provide}
             placeholder="Enter response"
             className="font-medium text-sm border-0 border-b-2 border-[#C1E4FF] p-2 outline-none mb-2"
           />
         
         
-         <SignUp title=" Try for FREE" wid="100%" bgCol="#0174c8"  />
+      {/*    <SignUp title=" Try for FREE" wid="100%" bgCol="#0174c8"  /> */}
+      
+      <input className="bg-[#0174c8] cursor-pointer py-3 mt-3 rounded-full text-slate-100 fon" type="submit" value="Try for FREE" />
      
-        </div>
+        </form>
       </div>
+      {showSignUp && <SignUp clicked={true} data={formData} />}
     </div>
     
   );

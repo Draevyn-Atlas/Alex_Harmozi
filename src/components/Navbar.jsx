@@ -1,6 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
 import SignIn from './secondPage/SignIn'
+import Otp from './secondPage/Otp'
 import { Link } from 'react-router-dom'
 
 const Navbar = () => {
@@ -11,7 +12,8 @@ const Navbar = () => {
           <img className='w-[100%] h-[100%]' src="https://i.ibb.co/zN2mdfd/Group-2.png" alt="logo." />
         </div>{' '}
       </Link>
-      <SignIn />
+     {/*  <SignIn /> */}
+     <Otp/>
     </div>
   )
 }
