@@ -16,6 +16,7 @@ import {
   Box,
 } from '@chakra-ui/react'
 import axios from 'axios'
+import { useNavigate } from 'react-router-dom'
 
 const details = { mobileNumber: '', email: '', password:'' }
 
@@ -25,11 +26,20 @@ function SignUp(prop) {
   const [signupData, setSignupData] = useState(details)
 
   const { isOpen, onOpen, onClose } = useDisclosure()
+  const navigate = useNavigate();
+  
+  function handlePrivacyPolicies() {
+    onClose()
+    navigate('/privacy-policy')
+  }
+  
 
   useEffect(() => {
     console.log('signnup', data)
     clicked && onOpen()
   }, [])
+
+  
 
   function postData(signupData){
     axios.post("https://tiny-jade-mussel-hat.cyclic.app/details/save",{info:data,email:signupData.email}).then((res)=>console.log("res",res)).catch((err)=>console.log("err",err))
@@ -50,6 +60,12 @@ function SignUp(prop) {
       console.log(signupData)
       onClose()
     }
+  }
+
+
+  function handleSkipLink() {
+    onClose()
+    navigate('/events')
   }
 
   function changeHandler(e) {
@@ -80,9 +96,9 @@ function SignUp(prop) {
           <ModalCloseButton />
           <ModalBody className="bg-[#fffbf0] border border-yellow-300 w-[90%] m-auto rounded-md">
             By Signing up you are agreeing with our{' '}
-            <span className="text-[#0176cc] cursor-pointer">
-              privacy policies
-            </span>
+            <span onClick={handlePrivacyPolicies} className="text-[#0176cc] cursor-pointer hover:underline">
+            privacy policies
+          </span>
             . We take privacy seriously. Your data is safe with us!
           </ModalBody>
           <ModalBody>
@@ -131,9 +147,13 @@ function SignUp(prop) {
             >
               <span>SIGN UP</span>
             </Button>
-            <span className="text-[#0173c7] text-center cursor-pointer mt-2">
-              Have you loss your email?
-            </span>
+            <span
+            onClick={handleSkipLink}
+            className="text-[#0173c7] my-3 hover:underline text-center cursor-pointer mt-2 "
+          >
+            skip for now, with limited access
+          </span>
+          
           </ModalFooter>
         </ModalContent>
       </Modal>

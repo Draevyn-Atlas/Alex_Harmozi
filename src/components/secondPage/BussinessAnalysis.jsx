@@ -1,10 +1,24 @@
 import React from 'react'
+import { useLocation } from 'react-router-dom';
+import SideBarTopData from '../../assets/SideBarTopData';
 
 const BussinessAnalysis = () => {
+  const {pathname} = useLocation()
+
+  console.log("buissss",SideBarTopData)
+  
+  const heading = pathname.replaceAll("/","").replace("events","").replaceAll("-"," ")
+  console.log("heading", heading)
+
+const data = SideBarTopData?.find(ele=> ele.title.toUpperCase()===heading.toUpperCase())
+  console.log("icon",SideBarTopData)
+  
   return (
     <div className=" rounded-lg lg:w-[95%] xl:w-[85%] md:w-[100%]  w-[95%] m-auto my-4 pt-2 pb-6 shadow-3xl bg-white">
       <span className="flex items-center justify-center text-2xl font-bold gap-x-2 ">
         <span>
+        {
+          !heading ?
           <svg width="30" height="30" viewBox="0 0 52 51" fill="none">
             <mask
               id="mask0_348_91"
@@ -23,14 +37,17 @@ const BussinessAnalysis = () => {
                 fill="#1C1B1F"
               />
             </g>
-          </svg>
+          </svg> 
+         :
+            data.icon
+          }
         </span>
-        <p> Business Analysis</p>
+        <p className='capitalize'>{heading ? heading : "Client Avatar"}</p>
       </span>
 
       <ul className="px-5 py-5 space-y-4 font-medium text-justify list-none list-inside ">
         <li >
-        <span className='font-bold'>  Business viability</span>
+        <span className='font-bold '>Business viability</span>
         
           <ol className="pl-5 mt-2 space-y-1 text-justify list-inside">
             <li>Viability Assessment: Atlas Al Consulting Co.</li>

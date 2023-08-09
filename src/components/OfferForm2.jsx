@@ -84,7 +84,7 @@ const Offer2 = () => {
       // axios.post("")
       setFormData(new_data)
       postData(new_data);
-      setShowSignUp(true)
+      setShowSignUp(!showSignUp)
        
     }
      
@@ -228,7 +228,7 @@ const Offer2 = () => {
         
       {/*    <SignUp title=" Try for FREE" wid="100%" bgCol="#0174c8"  /> */}
       
-      <input className="bg-[#0174c8] cursor-pointer py-3 mt-3 rounded-full text-slate-100 fon" type="submit" value="Try for FREE" />
+      <input className="bg-[#0174c8] cursor-pointer py-3 mt-3 rounded-full text-slate-100 hover:bg-[#4dabf7]" type="submit" value="Try for FREE" />
      
         </form>
       </div>
