@@ -42,7 +42,7 @@ function SignIn() {
         Sign In
       </Button>
 
-      <Modal isOpen={isOpen} onClose={onClose}>
+      <Modal isOpen={isOpen} onClose={onClose} >
         <ModalOverlay />
         <ModalContent>
           <ModalHeader className="text-center">SIGN IN</ModalHeader>

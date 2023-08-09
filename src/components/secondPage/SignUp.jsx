@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import Otp from './Otp'
 import {
   Modal,
@@ -17,13 +17,16 @@ import {
 } from '@chakra-ui/react'
 import axios from 'axios'
 import { useNavigate } from 'react-router-dom'
+import { ContextApi } from '../../context/ContextApi'
 
 const details = { mobileNumber: '', email: '', password:'' }
 
 function SignUp(prop) {
-  const { title, wid, bgCol, clicked, data } = prop
+  const { title, wid, bgCol, clicked, data,removeSignUp } = prop
   const [showOtp, setShowOtp] = useState(false)
   const [signupData, setSignupData] = useState(details)
+  const [validation, setValidation] = useState();
+  const {postDetailsAndEmailVerification} = useContext(ContextApi)
 
   const { isOpen, onOpen, onClose } = useDisclosure()
   const navigate = useNavigate();
@@ -34,18 +37,14 @@ function SignUp(prop) {
   }
   
 
+
   useEffect(() => {
-    console.log('signnup', data)
     clicked && onOpen()
   }, [])
 
   
 
-  function postData(signupData){
-    axios.post("https://tiny-jade-mussel-hat.cyclic.app/details/save",{info:data,email:signupData.email}).then((res)=>console.log("res",res)).catch((err)=>console.log("err",err))
-    
-    axios.post("https://tiny-jade-mussel-hat.cyclic.app/auth/signup",signupData).then((res)=>console.log("res",res)).catch((err)=>console.log("err",err))
-  }
+  
 
   function handleSignup() {
     if (
@@ -55,9 +54,8 @@ function SignUp(prop) {
       alert('Enter Valid Email, Phone mobileNumber, Pssword')
     } else {
       setShowOtp(true)
-      
-      postData(signupData)
-      console.log(signupData)
+      postDetailsAndEmailVerification(signupData,data)
+     
       onClose()
     }
   }
@@ -85,15 +83,14 @@ function SignUp(prop) {
           fontWeight={'700'}
           _hover={{ bg: '#cbd5e1', color: '#016ebd' }}
         >
-          {title ? title : 'Sign Up'}
-        </Button>
+          Sign Up  </Button>
       )}
 
-      <Modal isOpen={isOpen} onClose={onClose}>
+      <Modal isOpen={isOpen} onClose={onClose} closeOnOverlayClick={false}>
         <ModalOverlay />
-        <ModalContent>
+        <ModalContent >
           <ModalHeader className="text-center">SIGN UP</ModalHeader>
-          <ModalCloseButton />
+          <ModalCloseButton onClick={()=>removeSignUp(false)}  />
           <ModalBody className="bg-[#fffbf0] border border-yellow-300 w-[90%] m-auto rounded-md">
             By Signing up you are agreeing with our{' '}
             <span onClick={handlePrivacyPolicies} className="text-[#0176cc] cursor-pointer hover:underline">
@@ -105,11 +102,14 @@ function SignUp(prop) {
             <FormLabel>Phone Number</FormLabel>
             <Input
               onChange={changeHandler}
-              placeholder="+1 440-555-1234"
+              placeholder="440-555-1234"
               size="md"
               name="mobileNumber"
               type="number"
             />
+            <br />
+           { signupData.mobileNumber !==10 && <p className='text-red-500'>Mobile number must be have 10 digits</p> }
+
             <br />
             <FormLabel>Email address</FormLabel>
             <Input
@@ -121,16 +121,18 @@ function SignUp(prop) {
               name="email"
             />
             <br />
+            <br />
             <FormLabel>Password</FormLabel>
             <Input
               onChange={changeHandler}
               required
-              placeholder="example@gmail.com"
+              placeholder="*************"
               size="md"
               type="password"
               name="password"
             />
             <br />
+         
             <br />
             <Checkbox>Notify me on full web-launch!</Checkbox>
           </ModalBody>

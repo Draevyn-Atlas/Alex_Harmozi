@@ -31,7 +31,7 @@ function Otp(prop) {
     
   function postData(otp){
     console.log("POstDAta", {otp,email})
-    axios.post("https://tiny-jade-mussel-hat.cyclic.app/auth/verfiy-email",{email,otp}).then((res)=>console.log(res)).catch((err)=>console.log("err",err))
+    axios.post("https://tiny-jade-mussel-hat.cyclic.app/auth/verfiy-email",{email,otp}).then((res)=>console.log("otp res",res)).catch((err)=>console.log("err",err))
   }
   
 

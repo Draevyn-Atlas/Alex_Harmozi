@@ -1,7 +1,8 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import Group3 from "./../assets/Group 3.png";
 import SignUp from "./secondPage/SignUp";
-import axios from "axios";
+
+import { ContextApi } from "../context/ContextApi";
 
 
 const question ={
@@ -18,6 +19,7 @@ const Offer2 = () => {
   const [check,setCheck] = useState("");
   const [showSignUp, setShowSignUp] = useState(false);
   const [formData, setFormData] = useState("");
+  const {postDetails} = useContext(ContextApi)
   const [leftTime, setLeftTime] = useState({
     days: 0,
     hours: 0,
@@ -63,9 +65,6 @@ const Offer2 = () => {
   }
 
 
-  function postData(data){
-    axios.post("https://tiny-jade-mussel-hat.cyclic.app/details/save",{info:data}).then((res)=>console.log("res",res)).catch((err)=>console.log("err",err))
-  }
   
   const handleSubmit = (e) => {
     // setLoading(true);
@@ -83,14 +82,13 @@ const Offer2 = () => {
       // console.log("Form data:" , new_data);
       // axios.post("")
       setFormData(new_data)
-      postData(new_data);
-      setShowSignUp(!showSignUp)
+      postDetails(new_data);
+      setShowSignUp(true)
        
     }
      
     
-    // triggerWorklow({...new_data});
-    // console.log("")
+   
    
   };
 
@@ -232,7 +230,7 @@ const Offer2 = () => {
      
         </form>
       </div>
-      {showSignUp && <SignUp clicked={true} data={formData} />}
+      {showSignUp && <SignUp clicked={true} data={formData} removeSignUp={setShowSignUp}/>}
     </div>
     
   );

@@ -5,13 +5,10 @@ import SideBarTopData from '../../assets/SideBarTopData';
 const BussinessAnalysis = () => {
   const {pathname} = useLocation()
 
-  console.log("buissss",SideBarTopData)
   
   const heading = pathname.replaceAll("/","").replace("events","").replaceAll("-"," ")
-  console.log("heading", heading)
 
 const data = SideBarTopData?.find(ele=> ele.title.toUpperCase()===heading.toUpperCase())
-  console.log("icon",SideBarTopData)
   
   return (
     <div className=" rounded-lg lg:w-[95%] xl:w-[85%] md:w-[100%]  w-[95%] m-auto my-4 pt-2 pb-6 shadow-3xl bg-white">
