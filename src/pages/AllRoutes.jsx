@@ -7,8 +7,8 @@ import ServiceForm from '../pages/ServiceForm'
 import BussinessAnalysis from '../components/secondPage/BussinessAnalysis'
 
 const AllRoutes = () => {
-  const token = localStorage.getItem("token");
-  
+  const token = localStorage.getItem('token')
+
   return (
     <Routes>
       <Route path="/" element={<Home />} />

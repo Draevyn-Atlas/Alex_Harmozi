@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useContext, useEffect } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import {
   Modal,
@@ -15,14 +15,17 @@ import {
   Checkbox,
   Box,
 } from '@chakra-ui/react'
+import { ContextApi } from '../../context/ContextApi'
+import { toast } from 'react-toastify'
 
 function SignIn() {
   const { isOpen, onOpen, onClose } = useDisclosure()
-  const navigate = useNavigate();
-  
+  const navigate = useNavigate()
+  const { setShowSignIn, showSignIn } = useContext(ContextApi)
+
   function handleForgotPasswordLink() {
     onClose()
-    alert("Enter Email For New Password")
+    alert('Enter Email For New Password')
     // navigate('/events')
   }
   function handlePrivacyPolicies() {
@@ -30,31 +33,42 @@ function SignIn() {
     navigate('/privacy-policy')
   }
 
+  function handleSignInSubmit() {
+    onClose()
+    setShowSignIn(false)
+  }
+
+  useEffect(() => {
+    showSignIn && onOpen()
+  }, [])
+
   return (
     <Box>
-      <Button
-        borderRadius="12px"
-        bg={'none'}
-        fontWeight={'700'}
-        _hover={{ bg: '#cbd5e1', color: '#016ebd' }}
-        onClick={onOpen}
-      >
-        Sign In
-      </Button>
+      {!showSignIn && (
+        <Button
+          borderRadius="12px"
+          bg={'none'}
+          fontWeight={'700'}
+          _hover={{ bg: '#cbd5e1', color: '#016ebd' }}
+          onClick={onOpen}
+        >
+          Sign In
+        </Button>
+      )}
 
-      <Modal isOpen={isOpen} onClose={onClose} >
+      <Modal isOpen={isOpen} onClose={onClose} closeOnOverlayClick={false}>
         <ModalOverlay />
         <ModalContent>
           <ModalHeader className="text-center">SIGN IN</ModalHeader>
           <ModalCloseButton />
           <ModalBody className="bg-[#fffbf0] border text-justify border-yellow-300 w-[90%] m-auto rounded-md">
             By Signing up you are agreeing with our{' '}
-
-            <span onClick={handlePrivacyPolicies} className="text-[#0176cc] cursor-pointer hover:underline">
-            privacy policies
-          </span>
-         
-           
+            <span
+              onClick={handlePrivacyPolicies}
+              className="text-[#0176cc] cursor-pointer hover:underline"
+            >
+              privacy policies
+            </span>
             . We take privacy seriously. Your data is safe with us!
           </ModalBody>
           <ModalBody>
@@ -71,7 +85,7 @@ function SignIn() {
               onClick={handleForgotPasswordLink}
               className="text-[#0173c7]  hover:underline  cursor-pointer m-auto  text-right"
             >
-            Forget Password
+              Forget Password
             </div>
             <br />
             <Checkbox>Notify me on full web-launch!</Checkbox>
@@ -85,12 +99,10 @@ function SignIn() {
               borderRadius={'50px'}
               _hover={{ bg: '#0d51ab' }}
               className="m-auto"
-              onClick={onClose}
+              onClick={handleSignInSubmit}
             >
               <span>SIGN IN</span>
             </Button>
-
-            
           </ModalFooter>
         </ModalContent>
       </Modal>

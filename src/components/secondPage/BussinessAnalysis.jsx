@@ -1,34 +1,30 @@
-import React from "react";
-import { useLocation } from "react-router-dom";
-import SideBarTopData from "../../assets/SideBarTopData";
+import React from 'react'
+import { useLocation } from 'react-router-dom'
+import SideBarTopData from '../../assets/SideBarTopData'
 
 const BussinessAnalysis = () => {
-  const { pathname } = useLocation();
+  const { pathname } = useLocation()
   let protectedRoutes = [
-    "/events/client-dream-outcome",
-    "/events/grand-slam-$100M-offers",
-    "/events/client-pain-point-solutions",
-  ];
+    '/events/client-dream-outcome',
+    '/events/grand-slam-$100M-offers',
+    '/events/client-pain-point-solutions',
+  ]
 
-  let token = localStorage.getItem("token");
-  console.log({
-    pathname,
-    token,
-    isTrue: protectedRoutes.includes(pathname) != -1 && token,
-  });
-
-  console.log("buissss", SideBarTopData);
+  let token = localStorage.getItem('token')
+  // console.log({
+  //   pathname,
+  //   token,
+  //   isTrue: protectedRoutes.includes(pathname) != -1 && token,
+  // });
 
   const heading = pathname
-    .replaceAll("/", "")
-    .replace("events", "")
-    .replaceAll("-", " ");
-  console.log("heading", heading);
+    .replaceAll('/', '')
+    .replace('events', '')
+    .replaceAll('-', ' ')
 
   const data = SideBarTopData?.find(
-    (ele) => ele.title.toUpperCase() === heading.toUpperCase()
-  );
-  console.log("icon", SideBarTopData);
+    (ele) => ele.title.toUpperCase() === heading.toUpperCase(),
+  )
 
   return (
     <div className=" rounded-lg lg:w-[95%] xl:w-[85%] md:w-[100%]  w-[95%] m-auto my-4 pt-2 pb-6 shadow-3xl bg-white">
@@ -58,11 +54,11 @@ const BussinessAnalysis = () => {
             data.icon
           )}
         </span>
-        <p className="capitalize">{heading ? heading : "Client Avatar"}</p>
+        <p className="capitalize">{heading ? heading : 'Client Avatar'}</p>
       </span>
 
       {protectedRoutes.includes(pathname) && !token ? (
-        <div className="font-bold text-center py-5">
+        <div className="py-5 font-bold text-center">
           Please Sign In to access this data
         </div>
       ) : (
@@ -146,7 +142,7 @@ const BussinessAnalysis = () => {
         </ul>
       )}
     </div>
-  );
-};
+  )
+}
 
-export default BussinessAnalysis;
+export default BussinessAnalysis

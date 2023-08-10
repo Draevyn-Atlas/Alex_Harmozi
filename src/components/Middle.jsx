@@ -1,7 +1,7 @@
-import React from "react";
-import LeftPart from "./LeftPart";
-import RightPart from "./RightPart";
-import { styled } from "styled-components";
+import React from 'react'
+import LeftPart from './LeftPart'
+import RightPart from './RightPart'
+import { styled } from 'styled-components'
 
 const Middle = () => {
   return (
@@ -9,8 +9,8 @@ const Middle = () => {
       <LeftPart />
       <RightPart />
     </MiddlePart>
-  );
-};
+  )
+}
 
 const MiddlePart = styled.div`
   display: grid;
@@ -29,6 +29,6 @@ const MiddlePart = styled.div`
     display: flex;
     flex-direction: column-reverse;
   }
-`;
+`
 
-export default Middle;
+export default Middle

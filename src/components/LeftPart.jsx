@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom'
 
 const LeftPart = () => {
   return (
-    <Box className='bg-slate-50 '>
+    <Box className="bg-slate-50 ">
       <div>
         <div className="left_part_section ">
           <h1>Alex-Powered Solutions,</h1>
@@ -38,18 +38,17 @@ const LeftPart = () => {
               </p>
             </div>
           </div>
-        
-          <div className="demo">
-          <Link to="/events">
-          <div className='flex items-center gap-x-2'>
-          <span>Try demo</span>
 
-          <span className=''>
-            <BsArrowRight size={20} />
-          </span>
-        </div>
-          </Link>
-           
+          <div className="demo">
+            <Link to="/events">
+              <div className="flex items-center gap-x-2">
+                <span>Try demo</span>
+
+                <span className="">
+                  <BsArrowRight size={20} />
+                </span>
+              </div>
+            </Link>
           </div>
         </div>
       </div>

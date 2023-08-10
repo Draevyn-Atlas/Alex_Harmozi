@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from 'react'
-import Otp from './Otp'
+
 import {
   Modal,
   ModalOverlay,
@@ -15,51 +15,48 @@ import {
   Checkbox,
   Box,
 } from '@chakra-ui/react'
-import axios from 'axios'
 import { useNavigate } from 'react-router-dom'
 import { ContextApi } from '../../context/ContextApi'
-
-const details = { mobileNumber: '', email: '', password:'' }
+// password:''
+const details = { mobileNumber: '', email: '' }
 
 function SignUp(prop) {
-  const { title, wid, bgCol, clicked, data,removeSignUp } = prop
-  const [showOtp, setShowOtp] = useState(false)
+  const { title, wid, bgCol, clicked, data, removeSignUp } = prop
+
   const [signupData, setSignupData] = useState(details)
-  const [validation, setValidation] = useState();
-  const {postDetailsAndEmailVerification} = useContext(ContextApi)
+  const [validation, setValidation] = useState(false)
+  const { postDetailsAndEmailVerification, setShowSignUp } = useContext(
+    ContextApi,
+  )
 
   const { isOpen, onOpen, onClose } = useDisclosure()
-  const navigate = useNavigate();
-  
+  const navigate = useNavigate()
+
   function handlePrivacyPolicies() {
     onClose()
     navigate('/privacy-policy')
   }
-  
-
 
   useEffect(() => {
     clicked && onOpen()
   }, [])
 
-  
-
-  
-
   function handleSignup() {
     if (
       !signupData.email.includes('@gmail.com') ||
-      signupData.mobileNumber.length !== 10 || signupData.password.length<=8
+      signupData.mobileNumber.length !== 10
     ) {
-      alert('Enter Valid Email, Phone mobileNumber, Pssword')
+      // alert('Enter Valid Email, Phone mobileNumber, Pssword',signupData)
+      setValidation(true)
+      console.log('Enter Valid Email, Phone mobileNumber', signupData)
     } else {
-      setShowOtp(true)
-      postDetailsAndEmailVerification(signupData,data)
-     
-      onClose()
+      // setShowOtp(true)
+      postDetailsAndEmailVerification(signupData, data)
+      console.log()
+
+      onClose(signupData, data)
     }
   }
-
 
   function handleSkipLink() {
     onClose()
@@ -70,6 +67,35 @@ function SignUp(prop) {
     const { name, value } = e.target
     setSignupData({ ...signupData, [name]: value })
   }
+
+  // function validatePassword(password) {
+  //   // Check the password length
+  //   if (password.length < 8) {
+  //     return "Password must be at least 8 characters long";
+  //   }
+
+  //   // Check for at least one uppercase letter
+  //   if (!password.match(/[A-Z]/)) {
+  //     return "Password must contain at least one uppercase letter";
+  //   }
+
+  //   // Check for at least one lowercase letter
+  //   if (!password.match(/[a-z]/)) {
+  //     return "Password must contain at least one lowercase letter";
+  //   }
+
+  //   // Check for at least one number
+  //   if (!password.match(/[0-9]/)) {
+  //     return "Password must contain at least one number";
+  //   }
+
+  //   // Check for at least one special character
+  //   if (!password.match(/[!@#$%^&*()_+-]/)) {
+  //     return "Password must contain at least one special character";
+  //   }
+
+  //   return "" ; // No errors
+  // }
 
   return (
     <Box>
@@ -83,19 +109,23 @@ function SignUp(prop) {
           fontWeight={'700'}
           _hover={{ bg: '#cbd5e1', color: '#016ebd' }}
         >
-          Sign Up  </Button>
+          Sign Up{' '}
+        </Button>
       )}
 
       <Modal isOpen={isOpen} onClose={onClose} closeOnOverlayClick={false}>
         <ModalOverlay />
-        <ModalContent >
+        <ModalContent>
           <ModalHeader className="text-center">SIGN UP</ModalHeader>
-          <ModalCloseButton onClick={()=>removeSignUp(false)}  />
+          <ModalCloseButton onClick={() => setShowSignUp(false)} />
           <ModalBody className="bg-[#fffbf0] border border-yellow-300 w-[90%] m-auto rounded-md">
             By Signing up you are agreeing with our{' '}
-            <span onClick={handlePrivacyPolicies} className="text-[#0176cc] cursor-pointer hover:underline">
-            privacy policies
-          </span>
+            <span
+              onClick={handlePrivacyPolicies}
+              className="text-[#0176cc] cursor-pointer hover:underline"
+            >
+              privacy policies
+            </span>
             . We take privacy seriously. Your data is safe with us!
           </ModalBody>
           <ModalBody>
@@ -108,7 +138,11 @@ function SignUp(prop) {
               type="number"
             />
             <br />
-           { signupData.mobileNumber !==10 && <p className='text-red-500'>Mobile number must be have 10 digits</p> }
+            {validation && signupData.mobileNumber.length !== 10 && (
+              <p className="text-red-500">
+                Mobile number must be have 10 digits
+              </p>
+            )}
 
             <br />
             <FormLabel>Email address</FormLabel>
@@ -121,8 +155,12 @@ function SignUp(prop) {
               name="email"
             />
             <br />
+
+            {validation && !signupData.email.includes('@gmail.com') && (
+              <p className="text-red-500">Enter valid email address</p>
+            )}
             <br />
-            <FormLabel>Password</FormLabel>
+            {/*    <FormLabel>Password</FormLabel>
             <Input
               onChange={changeHandler}
               required
@@ -132,8 +170,12 @@ function SignUp(prop) {
               name="password"
             />
             <br />
+            { validation &&  validatePassword(signupData.password) ? <p className='text-red-500'>{validatePassword(signupData.password)}</p> :
+            !validatePassword(signupData.password) && <p className='text-green-500'>Password is strong</p>
+          }
+          
          
-            <br />
+            <br /> */}
             <Checkbox>Notify me on full web-launch!</Checkbox>
           </ModalBody>
 
@@ -150,16 +192,14 @@ function SignUp(prop) {
               <span>SIGN UP</span>
             </Button>
             <span
-            onClick={handleSkipLink}
-            className="text-[#0173c7] my-3 hover:underline text-center cursor-pointer mt-2 "
-          >
-            skip for now, with limited access
-          </span>
-          
+              onClick={handleSkipLink}
+              className="text-[#0173c7] my-3 hover:underline text-center cursor-pointer mt-2 "
+            >
+              skip for now, with limited access
+            </span>
           </ModalFooter>
         </ModalContent>
       </Modal>
-      {showOtp && <Otp clicked={true} email={signupData.email}/>}
     </Box>
   )
 }

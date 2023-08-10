@@ -4,7 +4,7 @@ import Mid from '../components/secondPage/Mid'
 
 const EventPage = () => {
   return (
-    <div className='flex'>
+    <div className='flex justify-between border-4 w-[100%]'>
     <Mid/>
     <History/>
     </div>

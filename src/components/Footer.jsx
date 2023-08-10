@@ -1,7 +1,7 @@
-import React from "react";
-import styled from "styled-components";
-import { BsInstagram } from "react-icons/bs";
-import { LuFacebook } from "react-icons/lu";
+import React from 'react'
+import styled from 'styled-components'
+import { BsInstagram } from 'react-icons/bs'
+import { LuFacebook } from 'react-icons/lu'
 
 const Footer = () => {
   return (
@@ -20,8 +20,8 @@ const Footer = () => {
         </a>
       </div>
     </Foot>
-  );
-};
+  )
+}
 
 const Foot = styled.div`
   width: 100%;
@@ -76,6 +76,6 @@ const Foot = styled.div`
     color: red;
     text-decoration: underline;
   } */
-`;
+`
 
-export default Footer;
+export default Footer

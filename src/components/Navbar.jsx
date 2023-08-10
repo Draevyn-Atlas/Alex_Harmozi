@@ -6,14 +6,17 @@ import { Link } from 'react-router-dom'
 
 const Navbar = () => {
   return (
-    <div className='flex justify-between px-5 py-5 border-b'> 
+    <div className="flex justify-between px-5 py-5 border-b">
       <Link to="/">
-        <div className='w-[80%]'>
-          <img className='w-[100%] h-[100%]' src="https://i.ibb.co/zN2mdfd/Group-2.png" alt="logo." />
+        <div className="w-[80%]">
+          <img
+            className="w-[100%] h-[100%]"
+            src="https://i.ibb.co/zN2mdfd/Group-2.png"
+            alt="logo."
+          />
         </div>{' '}
       </Link>
-      <SignIn /> 
-   
+      <SignIn />
     </div>
   )
 }

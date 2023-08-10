@@ -6,9 +6,9 @@ import {
   Radio,
   RadioGroup,
   Input,
-} from "@chakra-ui/react";
-import React from "react";
-import { styled } from "styled-components";
+} from '@chakra-ui/react'
+import React from 'react'
+import { styled } from 'styled-components'
 
 const OfferForm = () => {
   return (
@@ -25,13 +25,13 @@ const OfferForm = () => {
             Are you going to IMPROVE your clients health/wealth/relationships?
           </label>
           <div className="radio_group">
-            <Radio className="radio" color={"#E2E8F0"} value="Health">
+            <Radio className="radio" color={'#E2E8F0'} value="Health">
               Health
             </Radio>
-            <Radio className="radio" color={"#E2E8F0"} value="Wealth">
+            <Radio className="radio" color={'#E2E8F0'} value="Wealth">
               Wealth
             </Radio>
-            <Radio className="radio" color={"#E2E8F0"} value="Relationships">
+            <Radio className="radio" color={'#E2E8F0'} value="Relationships">
               Relationships
             </Radio>
           </div>
@@ -41,12 +41,12 @@ const OfferForm = () => {
             What is your target audience within this market? (e.g. entrepreneurs
             looking to scale their business)
           </label>
-          <Input placeholder={"Enter response"} />
+          <Input placeholder={'Enter response'} />
         </div>
       </form>
     </Offer>
-  );
-};
+  )
+}
 const Offer = styled.div`
   background: white;
   display: flex;
@@ -87,6 +87,6 @@ const Offer = styled.div`
       font-weight: 400;
     }
   }
-`;
+`
 
-export default OfferForm;
+export default OfferForm
